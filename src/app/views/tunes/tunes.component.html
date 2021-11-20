@@ -1,1 +1,13 @@
 <p>tunes works!</p>
+<form (submit)="getMusic()">
+    <input [(ngModel)] = "query" name="query" type="text">
+</form>
+
+
+<ul class="tunes-list">
+    <li *ngFor="let song of songs">
+        {{song | json}}
+
+    </li>
+</ul>
+

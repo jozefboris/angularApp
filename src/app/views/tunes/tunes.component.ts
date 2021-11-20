@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SongService } from 'src/app/services/song.service';
+import { Song } from '../../types';
 
 @Component({
   selector: 'app-tunes',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TunesComponent implements OnInit {
 
-  constructor() { }
+  query: string = ''
+  songs: Song[]= []
+
+  constructor(private songService: SongService) { }
+
+
+  getMusic():void {
+    event?.preventDefault()
+    this.songService.addSongs(this.query)
+
+  }
 
   ngOnInit(): void {
+    this.songs = this.songService.getSongs()
   }
 
 }
