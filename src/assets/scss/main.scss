@@ -1,20 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
-// just to prove it's real
-@import './assets/scss/variables';
-
-// fonts
+// @import 'fonts';
+@import 'variables';
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,800');
 
-html {
-	min-height: 100vh;
-	box-sizing: content-box;
+[v-cloak] {
+	display: none;
 }
 
 body {
-	color: $color;
 	font-size: 16px;
-	padding: 0 1.75em;
-	background: linear-gradient(145deg, #f3b809, #ffd24b);
+	color: $color;
+	background-color: #09f;
 }
 
 #app {
@@ -25,7 +20,7 @@ body {
 	}
 
 	text-align: center;
-	margin: 0em auto;
+	margin: 0em auto 2em;
 	max-width: 48em;
 
 	-webkit-font-smoothing: antialiased;
@@ -33,9 +28,8 @@ body {
 }
 
 a {
-	color: #c3002f;
+	color: #fffa0d;
 	outline: none;
-	font-weight: bold;
 }
 
 h1 {
@@ -54,21 +48,14 @@ h1:first-child {
 }
 
 header {
-	border-bottom: 3px solid #101010;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 	margin-bottom: 1em;
 }
 
 .content {
 	font-size: 1.15em;
 	line-height: 1.5em;
-
-	.tunes,
-	.about {
-		padding: {
-			top: 1.5em;
-			bottom: 1.5em;
-		}
-	}
+	padding: 1.5em 1.75em;
 }
 
 article {
