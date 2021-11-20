@@ -1,6 +1,6 @@
 <p>tunes works!</p>
-<form (submit)="getMusic()">
-    <input [(ngModel)] = "query" name="query" type="text">
+<form (keyup.enter)="getMusic(songInput.value)">
+    <input #songInput type="text">
 </form>
 
 

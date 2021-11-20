@@ -9,15 +9,14 @@ import { Song } from '../../types';
 })
 export class TunesComponent implements OnInit {
 
-  query: string = ''
   songs: Song[]= []
 
   constructor(private songService: SongService) { }
 
 
-  getMusic():void {
+  getMusic(name: string):void {
     event?.preventDefault()
-    this.songService.addSongs(this.query)
+    this.songService.addSongs(name)
 
   }
 
