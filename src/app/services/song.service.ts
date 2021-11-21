@@ -1,28 +1,63 @@
-import { Injectable } from '@angular/core';
-import {Song} from "../types"
+import { Injectable, Output, EventEmitter } from '@angular/core';
+import {Song, SongFroITunes} from "../types"
+import { iTunesService } from './itunes.service';
 @Injectable({
   providedIn: 'root'
 })
 export class SongService {
- private songs: Song[] = [
-    {id:1 , artist:'Jamal', name: 'Great songs'}
-  ]
+  @Output() newSongHaveArrived: EventEmitter<any> = new EventEmitter()
+ private songs: Song[] = []
 
 
-  constructor() {
-
-   }
-
-   getSongs(): Song[]{
-     return this.songs
+  constructor(private  iTunes: iTunesService) {
 
    }
 
-   addSongs(name: string): void{
+   getSongs(query: string){
+     if(query){
+     this.iTunes.getData(query).subscribe(
+       // next
+       (data: any) => {
+          this.songs = data.results.filter(
+            (song: SongFroITunes) => song.kind ==='song'
+          ).map((song: SongFroITunes) => this.extractData(song))
+          this.newSongHaveArrived.emit(this.songs)
+       },
+
+       // error
+       (error: any) => {
+        console.error(error)
+     },
+
+     // compplette
+     () => {
+      console.info('we are done here')
+   }
+     )
+     }
+
+
+   }
+
+  /*addSongs(name: string): void{
     this.songs.push({
       id: Math.max(...this.songs.map(s => s.id))+ 1,
       artist: name,
       name: name
     })
-   }
+   }*/
+
+   	/**
+	 * extractData
+	 */
+	public extractData({
+		trackId: id,
+		artistName: artist,
+		previewUrl: audioFile,
+		artworkUrl100: artwork,
+		trackName: title,
+		collectionName: album
+	}: SongFroITunes) {
+		return { id, artist, audioFile, artwork, title, album } as Song
+	}
 }

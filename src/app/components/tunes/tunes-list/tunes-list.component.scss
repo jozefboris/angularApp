@@ -1,0 +1,20 @@
+.tunes-list {
+	margin: 3em 0 0;
+	padding-left: 0;
+	list-style: none;
+}
+
+li {
+	margin-bottom: 2em;
+	font-size: 20px;
+}
+
+
+
+li:last-child {
+	.tunes-song {
+		margin-bottom: 1.25em;
+	}
+}
+
+

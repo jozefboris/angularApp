@@ -1,0 +1,5 @@
+<form (keyup.enter)="searchValue.emit(songInput.value)"
+(input)="search(songInput.value)">
+    <input #songInput type="text">
+</form>
+
